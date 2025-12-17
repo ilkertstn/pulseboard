@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a; /* Changed to dark default */
+  --foreground: #ededed; /* Changed to dark default */
 }
 
 @theme inline {
-  --color-bg-light: #ffffff;
-  --color-text-light: #0f172a;
+  /* Force Dark Mode Colors as Default */
+  --color-bg-light: #0f172a;
+  --color-text-light: #f1f5f9;
 
-  --color-bg-dark: #020617;
-  --color-text-dark: #e5e7eb;
+  --color-bg-dark: #0f172a;
+  --color-text-dark: #f1f5f9;
 }
 
 html {
-  background-color: var(--color-bg-light);
-  color: var(--color-text-light);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
 }
 
 /* Dark mode */
 html.dark {
   background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+/* Enforce Dark Background Globally */
+html, body {
+  background: radial-gradient(circle at top center, #1e1b4b, #020617);
   color: var(--color-text-dark);
 }
 

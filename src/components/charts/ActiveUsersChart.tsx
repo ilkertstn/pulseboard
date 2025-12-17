@@ -20,15 +20,18 @@ export function ActiveUsersChart({ data }: Props) {
     <div className="h-64">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" />
           <XAxis dataKey="date" tick={{ fill: "#9ca3af", fontSize: 12 }} />
           <YAxis tick={{ fill: "#9ca3af", fontSize: 12 }} />
           <Tooltip
             contentStyle={{
-              backgroundColor: "#020617",
-              border: "1px solid #1f2937",
-              color: "#e5e7eb",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              borderColor: "rgba(255, 255, 255, 0.1)",
+              backdropFilter: "blur(12px)",
+              borderRadius: "12px",
+              color: "#f1f5f9",
             }}
+            itemStyle={{ color: "#e2e8f0" }}
           />
           <Line
             type="monotone"

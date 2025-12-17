@@ -29,10 +29,13 @@ export function PlanDistributionPieChart({ data }: Props) {
 
           <Tooltip
             contentStyle={{
-              backgroundColor: "#020617",
-              border: "1px solid #1f2937",
-              color: "#e5e7eb",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              borderColor: "rgba(255, 255, 255, 0.1)",
+              backdropFilter: "blur(12px)",
+              borderRadius: "12px",
+              color: "#f1f5f9",
             }}
+            itemStyle={{ color: "#e2e8f0" }}
           />
         </PieChart>
       </ResponsiveContainer>

@@ -26,15 +26,18 @@ export default function DashboardPage() {
   const [range, setRange] = useState<"7d" | "30d">("7d");
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
 
-    const stored = getStoredUser();
-    if (!stored) {
-      router.replace("/login");
-      return;
-    }
+      const stored = getStoredUser();
+      if (!stored) {
+        router.replace("/login");
+      } else {
+        setUser(stored);
+      }
+    }, 0);
 
-    setUser(stored);
+    return () => clearTimeout(timer);
   }, [router]);
 
   const chartData = useMemo(() => {
@@ -43,7 +46,7 @@ export default function DashboardPage() {
 
   const headerSubtitle = useMemo(() => {
     if (!user) return "";
-    return `Signed in as ${user}`;
+    return `Signed in as ${user.email}`;
   }, [user]);
 
   if (!mounted) return null;
@@ -109,6 +112,7 @@ export default function DashboardPage() {
               label={m.label}
               value={m.value}
               change={m.change}
+              trend={m.change >= 0 ? "good" : "danger"}
             />
           ))}
         </div>
@@ -118,9 +122,9 @@ export default function DashboardPage() {
         <div
           className="
     rounded-2xl border
-    bg-white dark:bg-slate-900/60
-    border-slate-200 dark:border-slate-800
-    text-slate-900 dark:text-slate-100 p-6
+    bg-gradient-to-br from-indigo-900/10 to-blue-900/10 backdrop-blur-xl
+    border-indigo-500/10
+    text-slate-100 p-6
   "
         >
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
@@ -154,9 +158,9 @@ export default function DashboardPage() {
             <div
               className="
     rounded-2xl border
-    bg-white dark:bg-slate-900/60
-    border-slate-200 dark:border-slate-800
-    text-slate-900 dark:text-slate-100 p-6
+    bg-gradient-to-br from-violet-900/10 to-fuchsia-900/10 backdrop-blur-xl
+    border-violet-500/10
+    text-slate-100 p-6
   "
             >
               <h3 className="text-base font-semibold text-white mb-4">
@@ -173,9 +177,9 @@ export default function DashboardPage() {
         <div
           className="
     rounded-2xl border
-    bg-white dark:bg-slate-900/60
-    border-slate-200 dark:border-slate-800
-    text-slate-900 dark:text-slate-100 p-6
+    bg-gradient-to-br from-sky-900/10 to-cyan-900/10 backdrop-blur-xl
+    border-cyan-500/10
+    text-slate-100 p-6
   "
         >
           <h3 className="text-base font-semibold text-white mb-4">
@@ -187,9 +191,9 @@ export default function DashboardPage() {
         <div
           className="
     rounded-2xl border
-    bg-white dark:bg-slate-900/60
-    border-slate-200 dark:border-slate-800
-    text-slate-900 dark:text-slate-100 p-6
+    bg-gradient-to-br from-pink-900/10 to-rose-900/10 backdrop-blur-xl
+    border-rose-500/10
+    text-slate-100 p-6
   "
         >
           <h3 className="text-base font-semibold text-white mb-4">
